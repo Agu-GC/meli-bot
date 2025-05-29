@@ -1,0 +1,58 @@
+Fecha: Tue Jun  3 16:27:09 -03 2025
+Prompt: 
+
+=== llama3:8b-instruct-q4_K_M ===
+⏱️ Tiempo de respuesta: 40000 ms
+📥 Respuesta (primeras líneas):
+{"response":"Sí, OAuth2 (Open Authorization 2.0) es un protocolo de delegación de permisos estándar utilizado ampliamente por proveedores de servicios web y sociales grandes, entre otros. Permite que una aplicación cliente acceda a recursos protegidos (por ejemplo, una API) en nombre de su propietario real (por ejemplo, el usuario final)."}
+
+=== llama3:8b-instruct-q5_K_M ===
+⏱️ Tiempo de respuesta: 39000 ms
+📥 Respuesta (primeras líneas):
+{"response":"Sí, OAuth2 (Open Authorization 2.0) es un protocolo de delegación de permisos estándar utilizado ampliamente por proveedores de servicios web y sociales grandes, entre otros. Permite que una aplicación cliente acceda a recursos protegidos (por ejemplo, una API) en nombre de su propietario real (por ejemplo, el usuario final)."}
+
+=== mistral:7b-instruct-v0.2-q4_K_M ===
+⏱️ Tiempo de respuesta: 37000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 is a standard authorization protocol used by providers of web and social services to allow an application client to access protected resources (e.g., APIs) on behalf of its real owner (e.g., the end user). It has become popular for securing web REST services. OAuth2 can be associated with various transport methods, but it has been especially used for securing web REST services to extend functionality or improve security."}
+
+=== mistral:7b-instruct-v0.2-q5_K_M ===
+⏱️ Tiempo de respuesta: 40000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 is a standard authorization protocol that allows an application client to access protected resources (such as APIs) on behalf of its real owner (e.g., the end user). It's widely used by web and social service providers to securely grant access to their services, especially for web REST applications."}
+
+=== deepseek-coder:6.7b-instruct-q4_K_M ===
+⏱️ Tiempo de respuesta: 40000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 es un protocolo de autorización estándar que permite a una aplicación cliente acceder a recursos protegidos en nombre del propietario real (por ejemplo, el usuario final). Es utilizado por proveedores de servicios web y sociales para garantizar la seguridad de los servicios web REST. OAuth2 puede asociarse con diversos métodos de transporte, pero se ha especialmente utilizado para proteger servicios web REST para mejorar la funcionalidad o la seguridad."}
+
+=== deepseek-llm:7b-chat-q4_K_M ===
+⏱️ Tiempo de respuesta: 33000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 is a standard authorization protocol that allows an application client to access protected resources (such as APIs) on behalf of its real owner (e.g., the end user). It's widely used by web and social service providers to securely grant access to their services, especially for web REST applications."}
+
+=== phi3:3.8b-mini-128k-instruct-q5_K_M ===
+⏱️ Tiempo de respuesta: 21000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 es un protocolo de autorización estándar que permite a una aplicación cliente acceder a recursos protegidos en nombre del propietario real, como APIs. Es ampliamente utilizado por proveedores de servicios web y sociales para garantizar la seguridad de los servicios web REST."}
+
+=== phi3:14b-medium-128k-instruct-q4_K_M ===
+⏱️ Tiempo de respuesta: 129000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 es un protocolo de autorización estándar que permite a una aplicación cliente acceder a recursos protegidos en nombre del propietario real, como APIs. Es ampliamente utilizado por proveedores de servicios web y sociales para garantizar la seguridad de los servicios web REST."}
+
+=== gemma3:4b-it-q4_K_M ===
+⏱️ Tiempo de respuesta: 19000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth2 is a standard authorization protocol that allows an application client to access protected resources (like APIs) on behalf of its real owner (e.g., the end user)."}
+
+=== gemma3:1b-it-q4_K_M ===
+⏱️ Tiempo de respuesta: 6000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth 2.0 is a standard authorization protocol that allows an application client to access protected resources (like APIs) on behalf of its real owner (e.g., the end user)."}
+
+=== gemma3:1b-it-q8_0 ===
+⏱️ Tiempo de respuesta: 6000 ms
+📥 Respuesta (primeras líneas):
+{"response":"OAuth 2.0 is a standard authorization protocol that allows an application client to access protected resources (like APIs) on behalf of its real owner (e.g., the end user)."}
+

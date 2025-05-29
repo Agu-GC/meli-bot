@@ -1,0 +1,79 @@
+services:
+  chroma-db:
+    image: chromadb/chroma:latest
+    volumes:
+      - chroma-data:/data
+    environment:
+      CHROMA_SERVER_AUTHN_CREDENTIALS: ${CHROMA_SERVER_AUTHN_CREDENTIALS:-chr0m4t0k3n}
+      CHROMA_AUTH_TOKEN_TRANSPORT_HEADER: ${CHROMA_AUTH_TOKEN_TRANSPORT_HEADER:-Authorization}
+    networks:
+      - rag-network
+    healthcheck:
+      test: [ "CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/localhost/8000" ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+
+
+  redis:
+    image: "redis:alpine"
+    volumes:
+      - redis-data:/data
+    networks:
+      - rag-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  api:
+    build: .
+    environment:
+      CHROMA_HOST: chroma-db
+      CHROMA_PORT: 8000
+      CHROMA_AUTH_TOKEN: ${CHROMA_AUTH_TOKEN:-chr0m4t0k3n}
+      CHROMA_COLLECTION: documents
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+      OLLAMA_HOST: "host.docker.internal"  # Conexión al host desde Docker
+      OLLAMA_PORT: 11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-phi3:3.8b-instruct}
+      OLLAMA_MODEL_PROMPT_FORMAT: ${OLLAMA_MODEL_PROMPT_FORMAT:-"<|user|>\n{prompt}<|end|>\n<|assistant|>"}
+      OLLAMA_TIMEOUT: 240
+    ports:
+      - "8001:8000"
+    depends_on:
+      redis:
+        condition: service_healthy
+      chroma-db:
+        condition: service_healthy
+    networks:
+      - rag-network
+    command: ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    deploy:
+      resources:
+        limits:
+          cpus: '3.0'
+          memory: 3G
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Permite acceso al host
+
+volumes:
+  chroma-data:
+  redis-data:
+
+networks:
+  rag-network:
+    driver: bridge
