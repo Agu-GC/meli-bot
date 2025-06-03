@@ -1,14 +1,19 @@
-# 🤖 `meli-chatbot` – Chatbot de Seguridad con RAG y Ollama
+# 🤖 `meli-chatbot`
+# Chatbot de Seguridad con RAG y Ollama
 
 **`meli-bot`** es una Prueba de Concepto (POC) de un chatbot conversacional diseñado para responder preguntas sobre documentación de seguridad del equipo de seguridad. Utiliza Recuperación Aumentada por Generación (RAG), almacenamiento semántico vectorial con **ChromaDB**, modelos LLM locales administrados por **Ollama**, y sigue principios de **Clean Architecture** para facilitar su mantenibilidad y escalabilidad.
 
+<br/>
 ---
+
 
 ## 📌 Propósito
 
 El chatbot tiene como objetivo asistir en consultas frecuentes del equipo de seguridad sobre temas como autenticación, autorización y normativas internas. La documentación se almacena en archivos locales y es embebida al iniciar la aplicación, permitiendo búsquedas semánticas rápidas y respuestas contextualizadas.
 
+<br/>
 ---
+
 
 ## 🧩 Componentes principales
 
@@ -21,7 +26,9 @@ El chatbot tiene como objetivo asistir en consultas frecuentes del equipo de seg
 | **Sentence Transformers** | Se usa en tiempo real para codificar la consulta del usuario y los documentos.                                                          |
 | **Docker Compose**        | Orquesta los servicios de API, Redis y Chroma. La configuración se maneja vía variables de entorno.                                     |
 
+<br/>
 ---
+
 
 ## ⚙️ Flujo de ejecución
 
@@ -42,7 +49,9 @@ El chatbot tiene como objetivo asistir en consultas frecuentes del equipo de seg
 5. Llama al modelo a través del `LLMService` que se comunica con `ollama`.
 6. Guarda la interacción en Redis y devuelve la respuesta.
 
+<br/>
 ---
+
 
 ## 🧱 Estructura del proyecto (Clean Architecture)
 
@@ -72,7 +81,9 @@ meli-bot/
 └── .env                        # Configuración del entorno
 ```
 
+
 ---
+
 
 ## 📦 Cómo ejecutar
 
@@ -166,15 +177,31 @@ curl --location 'http://0.0.0.0:8001/api/v1/chat' \
 sh script_cleanup.sh
 ```
 
+<br/>
 ---
 
-## 📈 Mejoras
 
-* 🔐 Autenticación vía JWT
-* 🗃️ Testing
+## 📚 Benchmark
 
+Se realizaron pruebas con los principales modelos ligeros recomendados para host con M1 (como lo son nuestras PCs)  
+A traves del script `script_benchmark.sh` se analizaron:  
+- "llama3:8b-instruct-q4_K_M"
+- "llama3:8b-instruct-q5_K_M"
+- "mistral:7b-instruct-v0.2-q4_K_M"
+- "mistral:7b-instruct-v0.2-q5_K_M"
+- "deepseek-coder:6.7b-instruct-q4_K_M"
+- "deepseek-llm:7b-chat-q4_K_M"
+- "phi3:3.8b-mini-128k-instruct-q5_K_M"
+- "phi3:14b-medium-128k-instruct-q4_K_M"
+- "gemma3:4b-it-q4_K_M"
+- "gemma3:1b-it-q4_K_M"
+- "gemma3:1b-it-q8_0"
+Los resultados fueron almacenados en el file `benchmark_results.txt`.  
+En caso de querer analizar otros modelos solo se debe incluir la version del modelo en la variable MODELS y el template del prompt esperado en PROMPTS_FORMAT del script
 
+<br/>
 ---
+
 
 ## 📘 Decisiones técnicas
 
@@ -185,4 +212,15 @@ sh script_cleanup.sh
 * **Clean Architecture:** asegura una estructura sólida y desacoplada, ideal para iteraciones futuras o escalar a producción.
 * **Vector DB - ChromaDB:** Fácil integración, ligero y Open Source.
 * **Almacenamiento Historial - Redis:** Baja latencia para acceso conversacional
+
+<br/>
+---
+
+
+## 📈 Mejoras pendientes
+
+* 🔐 Autenticación de los requests
+* 🗃️ Testing
+
+
 ---
